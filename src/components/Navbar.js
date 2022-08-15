@@ -9,8 +9,8 @@ import { useSession } from "next-auth/react";
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const [navBg, setNavBg] = useState("transparent");
-  const [linkColor, setLinkColor] = useState("#1f2937");
-  const [shadow, setShadow] = useState(true);
+  const [linkColor, setLinkColor] = useState("black");
+
   const handleNav = () => {
     setNav(!nav);
   };
@@ -30,27 +30,15 @@ const Navbar = () => {
       setLinkColor("#ecf0f3");
     } else {
       setNavBg("#ecf0f3");
-      setLinkColor("#1f2937");
+      setLinkColor("black");
     }
-    const handleShadow = () => {
-      if (window.scrollY >= 90 || router.asPath !== "/") {
-        setShadow(false);
-      } else {
-        setShadow(true);
-      }
-    };
-    console.log(navBg);
-    window.addEventListener("scroll", handleShadow);
   }, [router]);
 
   return (
     <div
       style={{ backgroundColor: `${navBg}` }}
-      className={
-        shadow
-          ? "fixed w-full top-0 left-0 right-0 h-20 shadow-xl z-[100] ease-in-out duration-300"
-          : "fixed w-full top-0 left-0 right-0 h-20 z-[100]"
-      }
+      className= "fixed w-full top-0 left-0 right-0 h-20 shadow-xl z-[100] ease-in-out duration-300"
+      
     >
       <div className="flex justify-between items-center w-full h-full px-2 2xl:px-16">
         <div className="ml-4 flex flex-row">
@@ -73,7 +61,7 @@ const Navbar = () => {
             
             {navLinks.map((link) => 
                 <Link href={link.path} key={link.name}>
-                <li className={session ? "ml-10 text-lg  uppercase hover:border-b-4" : "hidden"}>
+                <li className={session ? "ml-10 text-lg  uppercase hover:border-b-4 border-turbo-pink": "hidden"}>
                   {link.name}
                 </li>
               </Link>
@@ -134,7 +122,7 @@ const Navbar = () => {
               <Link href={link.path} key={link.name}>
               <li
                 onClick={() => setNav(false)}
-                className={session ? "py-4 text-sm border-b-2 border-gray-300" : "hidden"}
+                className={session ? "py-4 text-sm border-b-2 border-gray-300 " : "hidden"}
               >
                 {link.name}
               </li>

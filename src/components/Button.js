@@ -6,12 +6,12 @@ import MyBtn from "./Mybutton"
 export default function Button() {
   const router = useRouter();
   const { data: session } = useSession();
-
+  console.log(session)
   return (
     <div>
       {session ? (
         <div onClick={() => signOut()}>
-           <MyBtn  textContent={"Signout"} />
+           <MyBtn  textContent={`Hi ${session.user?.email}`} />
         </div>
        
       ) : (
